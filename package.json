@@ -1,0 +1,26 @@
+{
+	"name": "dian-express-app",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.5",
+		"@types/bun": "latest",
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.3.3",
+		"tsx": "^4.21.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"dd-trace": "^5.87.0",
+		"express": "^5.2.1",
+		"winston": "^3.19.0"
+	},
+	"scripts": {
+		"dev": "tsx watch src/server.ts",
+		"build": "tsc",
+		"start": "node dist/server.js",
+		"lint": "biome check --write --unsafe ."
+	}
+}
