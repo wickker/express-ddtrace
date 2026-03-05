@@ -1,4 +1,4 @@
-import "./tracer"; // MUST be first import
+import "./tracer.js"; // MUST be first import
 import express from "express";
 import { logger } from "./logger.js";
 
