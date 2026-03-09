@@ -3,7 +3,7 @@ tracer.init({
     logInjection: true,
     port: 9529,
     service: "dian-express-app",
-    version: "1.0.0"
+    version: "1.0.0",
 });
 export default tracer;
 //# sourceMappingURL=tracer.js.map

@@ -1,8 +1,38 @@
 import "./tracer.js"; // MUST be first import
+import cors, { type CorsOptions } from "cors";
 import express from "express";
 import { logger } from "./logger.js";
 
 const app = express();
+
+const allowedOrigins = [
+	"https://react-rum-5529d.sevalla.page",
+	"http://localhost:3000",
+	"http://localhost:5173",
+];
+
+const corsOptions: CorsOptions = {
+	origin: (origin, callback) => {
+		// allow non-browser tools like curl/postman with no origin
+		if (!origin) {
+			return callback(null, true);
+		}
+
+		if (allowedOrigins.includes(origin)) {
+			return callback(null, true);
+		}
+
+		return callback(new Error("Not allowed by CORS"));
+	},
+	methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+	allowedHeaders: ["Content-Type", "Authorization"],
+	credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
